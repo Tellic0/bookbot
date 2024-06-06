@@ -1,3 +1,6 @@
+import os
+
+
 def read_contents(file_contents):
     print(f"{file_contents}")
 
@@ -17,7 +20,7 @@ def count_characters(file_contents):
 
     for char in lower_string:
         if char in chars_dict and char.isalpha():
-            chars_dict[char] = chars_dict[char] + 1
+            chars_dict[char] += 1
         elif char.isalpha():
             chars_dict[char] = 1
 
@@ -41,10 +44,18 @@ def print_report(name, file_contents):
 
 
 def main():
-    name = "frankenstein.txt"
-    with open(f"books/{name}") as f:
+    print("Please enter the name of the text file")
+    name = input()
+
+    while not os.path.isfile(f"./books/{name}.txt"):
+        print("This file doesn't exist try again")
+        name = input()
+
+    fname = f"{name}.txt"
+
+    with open(f"books/{fname}") as f:
         file_contents = f.read()
-    print_report(name, file_contents)
+    print_report(fname, file_contents)
 
 
 main()
