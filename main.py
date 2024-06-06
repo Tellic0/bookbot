@@ -1,19 +1,18 @@
-def read_contents(name):
-    with open(f"books/{name}") as f:
-        file_contents = f.read()
+def read_contents(file_contents):
     print(f"{file_contents}")
 
 
-def count_words(name):
-    with open(f"books/{name}") as f:
-        file_contents = f.read()
+def count_words(file_contents):
     words = file_contents.split()
     print(f"{len(words)}")
 
 
 def main():
-    read_contents("frankenstein.txt")
-    count_words("frankenstein.txt")
+    name = "frankenstein.txt"
+    with open(f"books/{name}") as f:
+        file_contents = f.read()
+    read_contents(file_contents)
+    count_words(file_contents)
 
 
 main()
