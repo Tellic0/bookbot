@@ -4,7 +4,7 @@ def read_contents(file_contents):
 
 def count_words(file_contents):
     words = file_contents.split()
-    print(f"{len(words)}")
+    return len(words)
 
 
 def sort_on(dict):
@@ -27,15 +27,24 @@ def count_characters(file_contents):
         dict_list.append({"char": name, "num": chars_dict[name]})
 
     dict_list.sort(reverse=True, key=sort_on)
-    print(dict_list)
+    return dict_list
+
+
+def print_report(name, file_contents):
+    dict_list = count_characters(file_contents)
+    word_count = count_words(file_contents)
+    print(f"--- Begin report of books/{name} ---")
+    print(f"{word_count} words found in the document\n")
+    for i in dict_list:
+        print(f"The {i["char"]} character was found {i["num"]} times")
+    print("--- End report ---")
 
 
 def main():
     name = "frankenstein.txt"
     with open(f"books/{name}") as f:
         file_contents = f.read()
-    count_words(file_contents)
-    count_characters(file_contents)
+    print_report(name, file_contents)
 
 
 main()
